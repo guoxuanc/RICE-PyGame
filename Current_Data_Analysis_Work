@@ -1,0 +1,69 @@
+Data are collected from online Surveymonkey and offline handout surveys. Handout surveys were recorded manually into excel then exported to csv file.
+
+-----
+
+encryption.py
+
+decrypt and encrypt file.
+
+LIBRARIES USED - os, Crypto, getpass, struct
+
+-----
+
+*online-survey-cleaner.py:
+
+This python file is used to clean surveymonkey data:
+
+1) Delete empty columns and drop unusable columns like IP adress and time stamp.
+
+2) Rename each column
+
+3) For multi-choice questions, surveymonkey recorded in a one-hot encoding fashion, meaning each answer corresponds with one column. Therefore, an extra column is created for each multi-choice questions, and iterate each row to include all choices into one array for each row, i.e. each individual.
+
+4) Modifie answer for each questions
+
+5) Detect and modify null value into unified annotation
+
+6) Export cleaned DataFrame
+
+LIBRARIES USED - pandas, numpy
+
+-----
+
+*handout-survey-cleaner.py
+
+This python file is used to clean recorded handout data:
+
+1) elete empty columns; modifie answer for each questions, Storing multi-choice answers into a list for each individual
+
+2) Expanding then binary encoding multi-choice questions, re-order each columns so both handout data and surveymonkey data has the unified form
+
+3) Rename each column
+
+4) Detect and modify null value into unified annotation
+
+5) Export cleaned DataFrame
+
+LIBRARIES USED - pandas, numpy, collections
+
+-----
+
+*preliminary-calculator.py
+
+this python file tallies some preliminary results from data.
+
+1) Read csv file from cleaned surveymonkey data and handout data, combine them into one DataFrame
+
+2) Map null values into string variable
+
+3)Count number of rows, calculate each option for each column/question
+
+LIBRARIES USED - pandas, numpy, collections
+
+-----
+
+*categorical-encoder.py
+
+this python file mainly converting each question using differently encoding strategies so them can be fed into regression model, still on processing...
+
+LIBRARIES USED (so far...) - pandas, numpy, matplotlib
